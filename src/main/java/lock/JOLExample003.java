@@ -26,29 +26,19 @@ public class JOLExample003 {
         thread.start();
 
         Thread thread2 = new Thread(()->{
-            try {
-                synchronized (student){
-                    Thread.sleep(10);
-                    System.out.println("thread2正在执行.............");
-                    System.out.println(ClassLayout.parseInstance(student).toPrintable());
-                }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            synchronized (student){
+                System.out.println("thread2正在执行.............");
+                System.out.println(ClassLayout.parseInstance(student).toPrintable());
+            }
+        });
+
+        Thread thread3 = new Thread(()->{
+            synchronized (student){
+                System.out.println("thread3正在执行............");
+                System.out.println(ClassLayout.parseInstance(student).toPrintable());
             }
         });
         thread2.start();
-
-        Thread thread3 = new Thread(()->{
-            try {
-                synchronized (student){
-                    Thread.sleep(100);
-                    System.out.println("thread3正在执行............");
-                    System.out.println(ClassLayout.parseInstance(student).toPrintable());
-                }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        });
         thread3.start();
 
     }
