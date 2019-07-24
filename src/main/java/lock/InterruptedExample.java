@@ -23,6 +23,7 @@ public class InterruptedExample {
 
         Thread thread2 = new Thread(()->{
             System.out.println("thread2线程执行任务！");
+            thread1.interrupt();
         });
         thread2.start();
 
@@ -33,7 +34,7 @@ public class InterruptedExample {
         thread3.start();
 
 
-        thread1.interrupt();
+
         System.out.println(thread1.isInterrupted());
 
 
